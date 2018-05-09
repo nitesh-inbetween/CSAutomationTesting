@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="PIM-SMOKE" parallel="none">
+
+    <listeners>
+        <listener class-name="org.listeners.SuiteListener" />
+        <listener class-name="org.listeners.TestListener" />
+        <listener class-name="org.listeners.StepListener" />
+    </listeners>
+
+    <test name="Launch Browser and Application">
+        <parameter name="description"
+            value="Perform verify browser compatiblity according to given CS version" />
+        <parameter name="BrowserDetails"
+            value="browsername=ff,url=http://localhost/Stable_CS16/admin/,browserversion=38,remote=no,title=CS Portal" />
+        <parameter name="mtcid" value="0" />
+        <parameter name="atcid" value="0" />
+        <parameter name="execute" value="y" />
+        <classes>
+            <class name="org.modules.LaunchApp" />
+        </classes>
+    </test>
+
+    <test name="Verify Login">
+        <parameter name="description"
+            value="Perform verification of login process" />
+        <parameter name="credentails" value="username=admin,password=admin" />
+        <parameter name="portal"
+            value="language=English,portal=Administration" />
+        <parameter name="mtcid" value="1" />
+        <parameter name="atcid" value="0" />
+        <parameter name="execute" value="y" />
+        <classes>
+            <class name="org.modules.LoginTest" />
+        </classes>
+    </test>
+
+    <test name="Create attribute folder">
+        <parameter name="description"
+            value="Perform verification create case of attribute folder" />
+        <parameter name="testData"
+            value="folderName=AutomationTestFolder,attributeName=AutomationTestAttribtue"></parameter>
+        <parameter name="mtcid" value="TC-129" />
+        <parameter name="atcid" value="1" />
+        <parameter name="execute" value="y" />
+        <classes>
+            <class name="org.modules.CreatePimAttributeFolder" />
+        </classes>
+    </test>
+
+    <test name="Create attribute in folder">
+        <parameter name="description"
+            value="Perform verification create case of attribute" />
+        <parameter name="testData"
+            value="folderName=AutomationTestFolder,attributeName=AutomationTestAttribtue"></parameter>
+        <parameter name="verificationTextData"
+            value="CSTypeLabel=Single-line Text,cs_PdmarticleconfigurationName=AutomationTestAttribtue,
+            cs_PdmarticleconfigurationLabel=empty,cs_PdmarticleconfigurationSortOrder=0"></parameter>
+        <parameter name="verificationDropdownData"
+            value="cs_PdmarticleconfigurationIsRequired=Never,cs_PdmarticleconfigurationIsInherited=No Inheritance,
+            cs_PdmarticleconfigurationIsSearchable=Not searchable"></parameter>
+        <parameter name="mtcid" value="TC-130" />
+        <parameter name="atcid" value="1" />
+        <parameter name="execute" value="y" />
+        <classes>
+            <class name="org.modules.CreatePimAttribute" />
+        </classes>
+    </test>
+
+    <test name="Create Class">
+        <parameter name="description"
+            value="Perform verification create case of Class" />
+        <parameter name="testData"
+            value="className=AutomationClass"></parameter>
+        <parameter name="mtcid" value="TC-132" />
+        <parameter name="atcid" value="1" />
+        <parameter name="execute" value="y" />
+        <classes>
+            <class name="org.modules.CreatePimClass" />
+        </classes>
+    </test>
+</suite>
